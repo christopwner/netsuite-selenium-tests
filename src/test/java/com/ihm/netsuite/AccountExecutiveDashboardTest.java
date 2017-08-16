@@ -45,8 +45,8 @@ public class AccountExecutiveDashboardTest {
     @BeforeClass
     public static void setupDriver() {
         ChromeOptions options = new ChromeOptions();
-        if (GraphicsEnvironment.isHeadless()) {
-            options.addArguments("headless");
+        if (GraphicsEnvironment.isHeadless() || true) {
+            options.addArguments("--headless");  
         }
         System.setProperty("webdriver.chrome.driver", "/tmp/binaries/linux/googlechrome/64bit/chromedriver");
         driver = new ChromeDriver(options);
