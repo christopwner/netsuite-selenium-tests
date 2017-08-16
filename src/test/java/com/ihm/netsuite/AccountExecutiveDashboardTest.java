@@ -31,7 +31,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  * Test of iHM's Account Executive dashboard on Netsuite.
@@ -44,12 +44,12 @@ public class AccountExecutiveDashboardTest {
 
     @BeforeClass
     public static void setupDriver() {
+        ChromeOptions options = new ChromeOptions();
         if (GraphicsEnvironment.isHeadless()) {
-            driver = new HtmlUnitDriver();
-        } else {
-            System.setProperty("webdriver.chrome.driver", "/tmp/binaries/linux/googlechrome/64bit/chromedriver");
-            driver = new ChromeDriver();
+            options.addArguments("headless");
         }
+        System.setProperty("webdriver.chrome.driver", "/tmp/binaries/linux/googlechrome/64bit/chromedriver");
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
