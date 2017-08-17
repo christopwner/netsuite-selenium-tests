@@ -46,7 +46,7 @@ public class AccountExecutiveDashboardTest {
     public static void setupDriver() {
         ChromeOptions options = new ChromeOptions();
         if (GraphicsEnvironment.isHeadless()) {
-            //options.addArguments("--headless");  
+            options.addArguments("headless");
         }
         System.setProperty("webdriver.chrome.driver", "/tmp/binaries/linux/googlechrome/64bit/chromedriver");
         driver = new ChromeDriver(options);
@@ -76,9 +76,10 @@ public class AccountExecutiveDashboardTest {
     @Test
     public void testPortletHeaders() {
         System.out.println("testAdjustments");
+
         List<String> expected = new LinkedList<>(
                 Arrays.asList("Shortcuts", "iHM Adjustments", "iHM Special Billing Requests",
-                        "Settings", "AE Invoice Search", "iHM AE Payments", "Radio A/R Aging Dashboard",
+                        "Settings", "AE Invoice Search", "iHM Payments", "Radio A/R Aging Dashboard",
                         "Non-Radio A/R Aging Dashboard", "KPI Meter", "Key Performance Indicators",
                         "Top 10 Clients By Balance"));
 
