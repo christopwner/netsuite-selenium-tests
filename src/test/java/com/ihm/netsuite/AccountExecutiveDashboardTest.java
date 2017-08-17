@@ -16,7 +16,6 @@
  */
 package com.ihm.netsuite;
 
-import java.awt.GraphicsEnvironment;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,8 +29,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
  * Test of iHM's Account Executive dashboard on Netsuite.
@@ -44,13 +42,8 @@ public class AccountExecutiveDashboardTest {
 
     @BeforeClass
     public static void setupDriver() {
-        ChromeOptions options = new ChromeOptions();
-        if (GraphicsEnvironment.isHeadless()) {
-            options.addArguments("headless");
-            options.addArguments("disable-gpu");
-        }
-        System.setProperty("webdriver.chrome.driver", "/tmp/binaries/linux/googlechrome/64bit/chromedriver");
-        driver = new ChromeDriver(options);
+        System.setProperty("phantomjs.binary.path", "/tmp/binaries/linux/phantomjs/64bit/phantomjs");
+        driver = new PhantomJSDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
