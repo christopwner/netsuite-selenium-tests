@@ -47,6 +47,7 @@ public class AccountExecutiveDashboardTest {
         ChromeOptions options = new ChromeOptions();
         if (GraphicsEnvironment.isHeadless()) {
             options.addArguments("headless");
+            options.addArguments("disable-gpu");
         }
         System.setProperty("webdriver.chrome.driver", "/tmp/binaries/linux/googlechrome/64bit/chromedriver");
         driver = new ChromeDriver(options);
