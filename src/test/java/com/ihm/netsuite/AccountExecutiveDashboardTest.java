@@ -19,57 +19,21 @@ package com.ihm.netsuite;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
  * Test of iHM's Account Executive dashboard on Netsuite.
  *
  * @author Christopher Towner
  */
-public class AccountExecutiveDashboardTest {
-
-    private static WebDriver driver;
-
-    @BeforeClass
-    public static void setupDriver() {
-        System.setProperty("phantomjs.binary.path", "/tmp/binaries/linux/phantomjs/64bit/phantomjs");
-        driver = new PhantomJSDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    @AfterClass
-    public static void closeDriver() {
-        driver.quit();
-    }
-
-    @Before
-    public void signIn() {
-        String username = System.getenv("NETSUITE_TEST_USERNAME");
-        String password = System.getenv("NETSUITE_TEST_PASSWORD");
-        driver.get("https://system.sandbox.netsuite.com/pages/customerlogin.jsp");
-        driver.findElement(By.id("userName")).sendKeys(username);
-        driver.findElement(By.className("password")).findElement(By.tagName("input")).sendKeys(password);
-        driver.findElement(By.className("submitButton")).click();
-    }
-
-    @After
-    public void signOut() {
-        driver.get("https://system.sandbox.netsuite.com/pages/nllogoutnoback.jsp");
-    }
+public class AccountExecutiveDashboardTest extends NetsuiteTest {
 
     @Test
     public void testPortletHeaders() {
-        System.out.println("testAdjustments");
+        System.out.println("testPortletHeaders");
 
         List<String> expected = new LinkedList<>(
                 Arrays.asList("Shortcuts", "iHM Adjustments", "iHM Special Billing Requests",
@@ -83,6 +47,7 @@ public class AccountExecutiveDashboardTest {
             }
         }
 
+        //assert all expected headers present
         assertTrue(expected.isEmpty());
     }
 
